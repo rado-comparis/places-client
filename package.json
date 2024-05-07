@@ -15,6 +15,7 @@
     "node": ">=18"
   },
   "devDependencies": {
+    "proxy": "http://localhost:3000",
     "enzyme": "^3.11.0",
     "jest": "^29.7.0"
   }

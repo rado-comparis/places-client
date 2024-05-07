@@ -10,7 +10,7 @@ export default function Home() {
   const [allplace, setData] = useState([]);
 // todo move to api folder
   useEffect(() => {
-    fetch("http://localhost:3001/v1/places")
+    fetch("/places")
       .then((res) => res.json())
       .then((data) => { 
         setData(data.data);
@@ -28,17 +28,19 @@ export default function Home() {
             <article key={place.id}>
               <div className={styles.div}>
                 <div>
-                  <h2>{place.name}</h2>
+                  <h2>
+                  <Link
+                    as={`/place/${place.id}`}
+                    href="/place/[id]]"
+                  >
+                    {place.name}
+                  </Link>
+                  </h2>
                 </div>
                 <div>
                   <h3 id={place.address} className={styles.h3}>{place.address}</h3>
                 </div>  
               </div>            
-              <div className={styles.div}>
-                <p>Opening hours: </p>
-                {place.opening_hours.days.tuesday[0].start}
-                  {/* {place.opening_hours.days.tuesday.map((item) => (<div><p>{item[0].start}</p></div>))} */}
-              </div>
             </article>
           ))
           ) : (

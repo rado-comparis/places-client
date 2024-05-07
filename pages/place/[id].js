@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Container from "../../components/container.js";
 import OpeningHour from "../opening-hour/opening-hour.js";
 
-export default function Post() {
+export default function Place() {
   const router = useRouter();
   const { id } = router.query;
   const [currentPlace, setData] = useState([]);
@@ -11,7 +11,7 @@ export default function Post() {
   useEffect(() => {
     if (id) {
       // todo move to api folder
-      fetch(`/place/${id}`)
+      fetch(`/places/${id}`)
         .then((res) => res.json())
         .then((data) => { 
           setData(data.data);
@@ -34,8 +34,9 @@ export default function Post() {
               </div>
               {currentPlace.opening_hours ? (
                 <div>
+                  Opening Hours:
                   <OpeningHour hours={currentPlace.opening_hours} />
-              </div>
+                </div>
               ) : null}
             </header>
           </article>
